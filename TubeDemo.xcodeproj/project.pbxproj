@@ -25,6 +25,7 @@
 		9F00ED0E246821A30090897E /* CollageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F00ED0D246821A30090897E /* CollageView.swift */; };
 		9F0C8E9724682DFE0068A536 /* StopTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0C8E9624682DFE0068A536 /* StopTableViewCell.swift */; };
 		9F0C8E9924682E0A0068A536 /* ArrivalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0C8E9824682E0A0068A536 /* ArrivalTableViewCell.swift */; };
+		9F0C8E9B246880C20068A536 /* PaddedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0C8E9A246880C20068A536 /* PaddedButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		9F00ED0D246821A30090897E /* CollageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollageView.swift; sourceTree = "<group>"; };
 		9F0C8E9624682DFE0068A536 /* StopTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopTableViewCell.swift; sourceTree = "<group>"; };
 		9F0C8E9824682E0A0068A536 /* ArrivalTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrivalTableViewCell.swift; sourceTree = "<group>"; };
+		9F0C8E9A246880C20068A536 /* PaddedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddedButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +124,7 @@
 				9F00ED0424680AD40090897E /* Models */,
 				9F00ECFC2466E3BC0090897E /* Services */,
 				9F00ED012467FFF70090897E /* ViewControllers */,
+				9F0C8E9C246880CA0068A536 /* Views */,
 				9F00ECC82466B3690090897E /* AppDelegate.swift */,
 				9F00ECCA2466B3690090897E /* SceneDelegate.swift */,
 				9F00ECCE2466B3690090897E /* Main.storyboard */,
@@ -191,9 +194,17 @@
 		9F00ED10246821C10090897E /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				9F00ED0D246821A30090897E /* CollageView.swift */,
 				9F0C8E9624682DFE0068A536 /* StopTableViewCell.swift */,
 				9F0C8E9824682E0A0068A536 /* ArrivalTableViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		9F0C8E9C246880CA0068A536 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9F00ED0D246821A30090897E /* CollageView.swift */,
+				9F0C8E9A246880C20068A536 /* PaddedButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -330,6 +341,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F00ECCD2466B3690090897E /* MapViewController.swift in Sources */,
+				9F0C8E9B246880C20068A536 /* PaddedButton.swift in Sources */,
 				9F00ECFE2466E3F60090897E /* StopsService.swift in Sources */,
 				9F00ECC92466B3690090897E /* AppDelegate.swift in Sources */,
 				9F00ED0324680AC30090897E /* Stop.swift in Sources */,

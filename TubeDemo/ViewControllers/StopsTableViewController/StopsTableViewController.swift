@@ -16,13 +16,16 @@ class StopsTableViewController: UITableViewController {
                 Arrival(name: "First"),
                 Arrival(name: "Second"),
                 Arrival(name: "Third")
-            ]
+            ],
+            additionalProperties: []
         ),
-        Stop(name: "Angel",
-             arrivals: [
+        Stop(
+            name: "Angel",
+            arrivals: [
                 Arrival(name: "1st"),
                 Arrival(name: "2nd")
-            ]
+            ],
+            additionalProperties: []
         )
     ]
     
@@ -37,11 +40,13 @@ class StopsTableViewController: UITableViewController {
         return stops.count
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView,
+                            numberOfRowsInSection section: Int) -> Int {
         return stops[section].arrivals.count + 1
     }
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView,
+                            cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(
             withIdentifier: reuseId(for: indexPath.row),
             for: indexPath
@@ -68,6 +73,8 @@ private extension StopsTableViewController {
     func configureStopCell(_ cell: UITableViewCell, stop: Stop) {
         let stopCell = cell as? StopTableViewCell
         stopCell?.titleLabel.text = stop.name
+        stopCell?.setCollageItems(stop.facilities())
+        stopCell?.delegate = self
     }
 
     func arrival(for indexPath: IndexPath) -> Arrival {
@@ -76,6 +83,15 @@ private extension StopsTableViewController {
 
     func reuseId(for row: Int) -> String {
         return row == 0 ? Constant.stopReuseId : Constant.arrivalReuseId
+    }
+}
+
+// MARK: - StopTableViewCellDelegate
+
+extension StopsTableViewController: StopTableViewCellDelegate {
+
+    func cell(cell: StopTableViewCell, didSelectCollageItemAt index: Int) {
+        print(index)
     }
 }
 
