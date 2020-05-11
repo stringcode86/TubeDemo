@@ -29,6 +29,9 @@
 		9F3B39AB2468AF5A00B8210A /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3B39A92468AF5A00B8210A /* NetworkManager.swift */; };
 		9F3B39AD2468B67900B8210A /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3B39AC2468B67900B8210A /* Formatter.swift */; };
 		9F3B39B02469044500B8210A /* StopPointsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3B39AF2469044500B8210A /* StopPointsResponse.swift */; };
+		9F3B39B72469552300B8210A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3B39B62469552300B8210A /* HomeViewController.swift */; };
+		9F3B39B9246960FF00B8210A /* UserLocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3B39B8246960FF00B8210A /* UserLocationService.swift */; };
+		9F3B39BB24696DD700B8210A /* MKCoordinateRegion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3B39BA24696DD700B8210A /* MKCoordinateRegion.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +80,9 @@
 		9F3B39A92468AF5A00B8210A /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		9F3B39AC2468B67900B8210A /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
 		9F3B39AF2469044500B8210A /* StopPointsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopPointsResponse.swift; sourceTree = "<group>"; };
+		9F3B39B62469552300B8210A /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		9F3B39B8246960FF00B8210A /* UserLocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationService.swift; sourceTree = "<group>"; };
+		9F3B39BA24696DD700B8210A /* MKCoordinateRegion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKCoordinateRegion.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +172,7 @@
 				9F3B39B12469044C00B8210A /* Responses */,
 				9F00ECFD2466E3F60090897E /* StopsService.swift */,
 				9F00ECFF2466E4020090897E /* ArrivalsService.swift */,
+				9F3B39B8246960FF00B8210A /* UserLocationService.swift */,
 				9F3B39A82468AF5A00B8210A /* EndPoint.swift */,
 				9F3B39A92468AF5A00B8210A /* NetworkManager.swift */,
 			);
@@ -175,6 +182,7 @@
 		9F00ED012467FFF70090897E /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				9F3B39B62469552300B8210A /* HomeViewController.swift */,
 				9F00ECCC2466B3690090897E /* MapViewController.swift */,
 				9F00ED0F246821A80090897E /* StopsTableViewController */,
 				9F3B39A624689BE800B8210A /* FacilityDetailViewController.swift */,
@@ -222,6 +230,7 @@
 			isa = PBXGroup;
 			children = (
 				9F3B39AC2468B67900B8210A /* Formatter.swift */,
+				9F3B39BA24696DD700B8210A /* MKCoordinateRegion.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -370,13 +379,16 @@
 				9F0C8E9B246880C20068A536 /* PaddedButton.swift in Sources */,
 				9F00ECFE2466E3F60090897E /* StopsService.swift in Sources */,
 				9F00ECC92466B3690090897E /* AppDelegate.swift in Sources */,
+				9F3B39B72469552300B8210A /* HomeViewController.swift in Sources */,
 				9F3B39B02469044500B8210A /* StopPointsResponse.swift in Sources */,
+				9F3B39BB24696DD700B8210A /* MKCoordinateRegion.swift in Sources */,
 				9F00ED0324680AC30090897E /* Stop.swift in Sources */,
 				9F00ED0E246821A30090897E /* CollageView.swift in Sources */,
 				9F0C8E9924682E0A0068A536 /* ArrivalTableViewCell.swift in Sources */,
 				9F3B39AB2468AF5A00B8210A /* NetworkManager.swift in Sources */,
 				9F0C8E9724682DFE0068A536 /* StopTableViewCell.swift in Sources */,
 				9F00ECCB2466B3690090897E /* SceneDelegate.swift in Sources */,
+				9F3B39B9246960FF00B8210A /* UserLocationService.swift in Sources */,
 				9F00ED0624680AF10090897E /* Arrival.swift in Sources */,
 				9F00ED08246812E70090897E /* StopsTableViewController.swift in Sources */,
 				9F3B39AA2468AF5A00B8210A /* EndPoint.swift in Sources */,

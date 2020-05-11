@@ -69,6 +69,17 @@ class StopsTableViewController: UITableViewController {
     }
 }
 
+// MARK: - MapViewControllerDelegate
+
+extension StopsTableViewController: MapViewControllerDelegate {
+    
+    func mapViewController(mapViewController: MapViewController,
+                           didChange location: CLLocationCoordinate2D) {
+        self.location = location
+        self.refreshStops(location: location)
+    }
+}
+
 // MARK: - TableView utility methods
 
 private extension StopsTableViewController {

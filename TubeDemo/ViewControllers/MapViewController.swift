@@ -20,14 +20,42 @@ class MapViewController: UIViewController {
     
     weak var delegate: MapViewControllerDelegate?
     
+    var locationService = UserLocationService()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        moveMapToLocation(location: Constant.defaultLocation)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        locationService.getUserLocation { [weak self] location in
+            self?.handleUserLocationUpdate(location: location)
+        }
+    }
+}
+
+// MARK: - Default map location handeling
+
+extension MapViewController {
+    
+    func handleUserLocationUpdate(location: CLLocationCoordinate2D?) {
+        guard let location = location else {
+            moveMapToLocation(location: Constant.defaultLocation)
+            return
+        }
         
+        guard Constant.londonRegion.contains(location: location) else {
+            moveMapToLocation(location: Constant.defaultLocation)
+            return
+        }
+        
+        moveMapToLocation(location: location)
+    }
+    
+    func moveMapToLocation(location: CLLocationCoordinate2D) {
         mapView.setVisibleMapRect(
-            MKMapRect(
-                origin: MKMapPoint(Constant.defaultLocation),
-                size: Constant.defaultSize
-            ),
+            MKMapRect(origin: MKMapPoint(location), size: Constant.defaultSize),
             animated: true
         )
     }
@@ -55,5 +83,8 @@ private extension MapViewController {
             latitude: 51.5155294,
             longitude: -0.1440504
         )
+        static let londonRegion = MKCoordinateRegion(
+            center: Constant.defaultLocation,
+            span: MKCoordinateSpan(latitudeDelta: 0.25, longitudeDelta: 0.4))
     }
 }
