@@ -8,6 +8,6 @@
 
 import Foundation
 
-struct Arrival {
+struct Arrival: Decodable {
     let name: String
 }

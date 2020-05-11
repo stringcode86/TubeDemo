@@ -10,21 +10,52 @@ import Foundation
 
 struct Stop {
     
+    let naptanId: String
     let name: String
-    let arrivals: [Arrival]
+    let distance: Double
     let additionalProperties: [AdditionalProperty]
-}
-
-extension Stop {
     
     func facilities() -> [String] {
-       return ["Test", "Random", "Something else"]
+        return additionalProperties
+            .filter { $0.category == .facility && $0.available }
+            .map { $0.key }
     }
 }
 
-struct AdditionalProperty {
+// MARK: - Decodable
+
+extension Stop: Decodable {
+    
+    enum CodingKeys: String, CodingKey {
+        case name = "commonName"
+        case naptanId
+        case distance
+        case additionalProperties
+    }
+}
+
+// MARK - AdditionalProperty
+
+struct AdditionalProperty: Decodable {
     
     let key: String
-    let category: String
-    let value: Bool
+    let category: Category
+    let value: String
+    
+    var available: Bool {
+        return value != "no"
+    }
+    
+    enum Category: String, CaseIterable, Decodable {
+        case facility = "Facility"
+        case other
+
+        init(from decoder: Decoder) throws {
+            let container = try? decoder.singleValueContainer()
+            let value = try? container?.decode(RawValue.self)
+            let category = Self(rawValue: value ?? Self.allCases.last!.rawValue)
+            self = category ?? Self.allCases.last!
+        }
+    }
 }
+

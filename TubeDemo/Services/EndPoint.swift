@@ -9,56 +9,60 @@
 import Foundation
 
 enum EndPoint {
-    case nearByStations(lat: Float, lon: Float, radius: Int)
+    case nearByStations(lat: Double, lon: Double, radius: Int)
     case arrivals(id: String)
 }
 
-extension EndPoint {
+// MARK: - NetworkEndPoint
 
-    func URL() -> URL {
+extension EndPoint: NetworkEndPoint {
+
+    var path: String {
         switch self {
-
-        case let .nearByStations(lat, lon, radius):
-            var urlComps = URLComponents(
-                url: stopPointURL(),
-                resolvingAgainstBaseURL: false
-            )
-            urlComps?.queryItems = [
-                URLQueryItem(name: "lat", value: "\(lat)"),
-                URLQueryItem(name: "lon", value: "\(lon)"),
-                URLQueryItem(name: "radius", value: "\(radius)"),
-                URLQueryItem(name: "stoptypes", value: "NaptanMetroStation,NaptanRailStation"),
-                URLQueryItem(name: "modes", value: "tube"),
-            ] + credentialsQueryItems()
-            return urlComps!.url!
-
+        case .nearByStations:
+            return "Stoppoint"
         case let .arrivals(id):
-            var urlComps = URLComponents(
-                url: stopPointURL().appendingPathComponent("\(id)/Arrivals"),
-                resolvingAgainstBaseURL: false
-            )
-            urlComps?.queryItems = [
-                URLQueryItem(name: "modes", value: "tube")
-            ] + credentialsQueryItems()
-            return urlComps!.url!
+            return "Stoppoint\(id)/Arrivals"
         }
+    }
+
+    var queryItems: Dictionary<String, String>? {
+        switch self {
+        case let .nearByStations(lat, lon, radius):
+            return [
+                "lon": "\(lon)",
+                "lat": "\(lat)",
+                "radius": "\(radius)",
+                "stoptypes": Constant.stopTypes,
+                "modes": Constant.modes,
+                "app_id": Credentials.id.rawValue,
+                "app_key": Credentials.key.rawValue
+
+            ]
+        case .arrivals:
+            return [
+                "modes": Constant.modes,
+                "app_id": Credentials.id.rawValue,
+                "app_key": Credentials.key.rawValue
+
+            ]
+        }
+    }
+
+    var url: URL {
+        return Constant.baseURL.appendingPathComponent(path)
     }
 }
 
-extension EndPoint {
+// MARK: - Constants
 
-    private func baseURL() -> URL {
-        return Foundation.URL(string: "https://api.tfl.gov.uk")!
-    }
+private struct Constant {
+    static let baseURL = URL(string: "https://api.tfl.gov.uk")!
+    static let stopTypes = "NaptanMetroStation,NaptanRailStation"
+    static let modes = "tube"
+}
 
-    private func stopPointURL() -> URL {
-        return baseURL().appendingPathComponent("Stoppoint")
-    }
-
-    private func credentialsQueryItems() -> [URLQueryItem] {
-        return [
-            URLQueryItem(name: "app_id", value: Credentials.id.rawValue),
-            URLQueryItem(name: "app_key", value: Credentials.key.rawValue)
-        ]
-    }
+private enum Credentials: String {
+    case id = "86bb596d"
+    case key = "ad5329c3730e6d8f215bf930fab72bcb"
 }

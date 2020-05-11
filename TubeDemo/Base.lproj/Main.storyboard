@@ -103,10 +103,57 @@
                             <outlet property="delegate" destination="KbO-ej-htk" id="o7z-AP-aOp"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="SRc-Ym-hqm" kind="show" identifier="toFacilityDetail" id="dRn-0R-72C"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N7Y-ql-eYg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1143.2" y="696.79802955665025"/>
+        </scene>
+        <!--Facility Detail View Controller-->
+        <scene sceneID="zxY-6q-Y14">
+            <objects>
+                <viewController id="SRc-Ym-hqm" customClass="FacilityDetailViewController" customModule="TubeDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0rg-CV-hkh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pwU-Qd-dgd">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                                <items>
+                                    <navigationItem title="Title" id="Y78-t6-O0a"/>
+                                </items>
+                            </navigationBar>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="yOX-ka-WzF">
+                                <rect key="frame" x="0.0" y="56" width="375" height="702"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="yOX-ka-WzF" secondAttribute="bottom" id="4Zk-fS-SnJ"/>
+                            <constraint firstItem="yOX-ka-WzF" firstAttribute="leading" secondItem="Gi2-7h-zPC" secondAttribute="leading" id="8Jx-qA-rVq"/>
+                            <constraint firstItem="pwU-Qd-dgd" firstAttribute="top" secondItem="Gi2-7h-zPC" secondAttribute="top" id="A2y-mB-cut"/>
+                            <constraint firstItem="yOX-ka-WzF" firstAttribute="top" secondItem="pwU-Qd-dgd" secondAttribute="bottom" id="I1Q-he-nUI"/>
+                            <constraint firstItem="pwU-Qd-dgd" firstAttribute="leading" secondItem="Gi2-7h-zPC" secondAttribute="leading" id="SPv-xc-McN"/>
+                            <constraint firstItem="pwU-Qd-dgd" firstAttribute="trailing" secondItem="Gi2-7h-zPC" secondAttribute="trailing" id="h0P-Bg-wtQ"/>
+                            <constraint firstItem="yOX-ka-WzF" firstAttribute="trailing" secondItem="Gi2-7h-zPC" secondAttribute="trailing" id="hUp-KY-Gm0"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Gi2-7h-zPC"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="lvM-uY-tek"/>
+                    <connections>
+                        <outlet property="navigationBar" destination="pwU-Qd-dgd" id="0bx-x2-D3c"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OSc-NZ-t2K" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-434.39999999999998" y="696.79802955665025"/>
         </scene>
     </scenes>
 </document>
