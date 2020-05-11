@@ -22,7 +22,7 @@ extension EndPoint: NetworkEndPoint {
         case .nearByStations:
             return "Stoppoint"
         case let .arrivals(id):
-            return "Stoppoint\(id)/Arrivals"
+            return "Stoppoint/\(id)/Arrivals"
         }
     }
 

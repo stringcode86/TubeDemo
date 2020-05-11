@@ -9,5 +9,7 @@
 import Foundation
 
 struct Arrival: Decodable {
-    let name: String
+    let id: String
+    let towards: String
+    let expectedArrival: Date
 }

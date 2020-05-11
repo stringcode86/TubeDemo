@@ -194,19 +194,19 @@
 		9F00ED0F246821A80090897E /* StopsTableViewController */ = {
 			isa = PBXGroup;
 			children = (
+				9F00ED10246821C10090897E /* Cells */,
 				9F00ED07246812E70090897E /* StopsTableViewController.swift */,
-				9F00ED10246821C10090897E /* Views */,
 			);
 			path = StopsTableViewController;
 			sourceTree = "<group>";
 		};
-		9F00ED10246821C10090897E /* Views */ = {
+		9F00ED10246821C10090897E /* Cells */ = {
 			isa = PBXGroup;
 			children = (
 				9F0C8E9624682DFE0068A536 /* StopTableViewCell.swift */,
 				9F0C8E9824682E0A0068A536 /* ArrivalTableViewCell.swift */,
 			);
-			path = Views;
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		9F0C8E9C246880CA0068A536 /* Views */ = {

@@ -20,6 +20,16 @@ class StopTableViewCell: UITableViewCell {
 
     weak var delegate: StopTableViewCellDelegate?
     
+    func configure(title: String, collageItems: [String]) {
+        titleLabel.text = title
+        setCollageItems(collageItems)
+    }
+}
+
+// MARK: - Collage handling
+
+private extension StopTableViewCell {
+    
     func setCollageItems(_ collageItems: [String]) {
         while collageView.subviews.count > collageItems.count {
             collageView.subviews.last?.removeFromSuperview()
@@ -30,12 +40,10 @@ class StopTableViewCell: UITableViewCell {
             button?.setTitle(collageItem, for: .normal)
             button?.tag = index
         }
+        
+        collageView.invalidateIntrinsicContentSize()
+        collageView.setNeedsLayout()
     }
-}
-
-// MARK: - Collage handling
-
-private extension StopTableViewCell {
     
     func dequeueButton(collageView: CollageView, at index: Int) -> UIButton? {
         guard index >= collageView.subviews.count else {

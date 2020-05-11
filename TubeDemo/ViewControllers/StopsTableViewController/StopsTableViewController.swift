@@ -11,44 +11,28 @@ import MapKit
 
 class StopsTableViewController: UITableViewController {
 
+    var location: CLLocationCoordinate2D = Constant.defaultLocation
     var stopsService: StopsService = StopsService()
+    var arrivalsService: ArrivalsService = ArrivalsService()
     
-    private var stops = [
-        Stop(
-            naptanId: "one",
-            name: "Old street",
-            distance: 10,
-            additionalProperties: []
-        ),
-        Stop(
-            naptanId: "two",
-            name: "Angel",
-            distance: 20,
-            additionalProperties: []
-        )
-    ]
-
+    private var stops: [Stop] = []
     private var arrivals: [String: [Arrival]] = [:]
-    
-    
+    private var arrivalsTimer: Timer?
     private var selectedFacility: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        refreshStops(location: location)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        let location = CLLocationCoordinate2D(
-            latitude: 51.5155294,
-            longitude: -0.1440504
-        )
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.refreshStops(location: location)
-        }
+        begingArrivalsRefreshing()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        endArrivalsRefreshing()
     }
 
     // MARK: - Table view data source
@@ -90,13 +74,13 @@ class StopsTableViewController: UITableViewController {
 private extension StopsTableViewController {
 
     func configureArrivalCell(_ cell: UITableViewCell, arrival: Arrival) {
-        cell.textLabel?.text = arrival.name
+        let cellA = cell as? ArrivalTableViewCell
+        cellA?.configure(title: arrival.towards, date: arrival.expectedArrival)
     }
 
     func configureStopCell(_ cell: UITableViewCell, stop: Stop) {
         let stopCell = cell as? StopTableViewCell
-        stopCell?.titleLabel.text = stop.name
-        stopCell?.setCollageItems(stop.facilities())
+        stopCell?.configure(title: stop.name, collageItems: stop.facilities())
         stopCell?.delegate = self
     }
 
@@ -136,6 +120,7 @@ private extension StopsTableViewController {
             DispatchQueue.main.async {
                 self.handleError(error)
                 self.handleStops(stops)
+                self.refreshArrivals(for: stops)
             }
         }
     }
@@ -155,13 +140,72 @@ private extension StopsTableViewController {
             sectionsToInsert = Array(self.stops.count..<stops.count)
         }
 
-        self.stops = stops
+        self.stops = stops.sorted { $0.distance < $1.distance }
+        self.arrivals = [:]
 
         tableView.beginUpdates()
-        tableView.deleteSections(IndexSet(sectionsToDelete), with: .automatic)
-        tableView.reloadSections(IndexSet(sectionsToReload), with: .automatic)
-        tableView.insertSections(IndexSet(sectionsToInsert), with: .automatic)
+        tableView.deleteSections(IndexSet(sectionsToDelete), with: .top)
+        tableView.reloadSections(IndexSet(sectionsToReload), with: .fade)
+        tableView.insertSections(IndexSet(sectionsToInsert), with: .bottom)
         tableView.endUpdates()
+    }
+}
+
+// MARK: - Arrivals refreshing
+
+private extension StopsTableViewController {
+    
+    func refreshArrivals(for stops: [Stop]) {
+        guard stops.count > 0 else {
+            arrivals = [:]
+            return
+        }
+        
+        for stop in stops {
+            arrivalsService.arrivals(
+                for: stop.naptanId,
+                limit: Constant.defaultArrivalsLimit,
+                handler: { arrivals, error in
+                    
+                    DispatchQueue.main.async {
+                        self.handleError(error)
+                        self.handleArrivals(stop: stop, arrivals: arrivals)
+                    }
+            })
+        }
+    }
+    
+    func handleArrivals(stop: Stop, arrivals: [Arrival]) {
+        self.arrivals[stop.naptanId] = arrivals
+        
+        if let idx = stops.lastIndex(where: { $0.naptanId == stop.naptanId }) {
+            tableView.beginUpdates()
+            tableView.reloadSections(IndexSet([idx]), with: .fade)
+            tableView.endUpdates()
+        }
+    }
+}
+
+// MARK: - Arrivals timer
+
+private extension StopsTableViewController {
+    
+    func begingArrivalsRefreshing() {
+        guard arrivalsTimer == nil else {
+            return
+        }
+        arrivalsTimer = Timer.scheduledTimer(
+            withTimeInterval: Constant.refreshInterval,
+            repeats: true,
+            block: { [weak self] _ in
+                self?.refreshArrivals(for: self?.stops ?? [])
+            }
+        )
+    }
+    
+    func endArrivalsRefreshing() {
+        arrivalsTimer?.invalidate()
+        arrivalsTimer = nil
     }
 }
 
@@ -180,6 +224,10 @@ private extension StopsTableViewController {
             preferredStyle: .alert
         )
         
+        alert.addAction(
+            UIAlertAction(title: Constant.genericErrorOK, style: .cancel)
+        )
+        
         present(alert, animated: true)
     }
 }
@@ -194,5 +242,12 @@ private extension StopsTableViewController {
         static let stopReuseId = "StopCellReuseId"
         static let toFacilitySegueId = "toFacilityDetail"
         static let genericErrorTitle = "Error"
+        static let genericErrorOK = "OK"
+        static let defaultArrivalsLimit = 3
+        static let refreshInterval = TimeInterval(30)
+        static let defaultLocation = CLLocationCoordinate2D(
+            latitude: 51.5155294,
+            longitude: -0.1440504
+        )
     }
 }

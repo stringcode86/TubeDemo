@@ -17,10 +17,15 @@ struct StopsService {
         let endPoint = EndPoint.nearByStations(
             lat: location.latitude,
             lon: location.longitude,
-            radius: Constant.defaultRadius)
-        NetworkManager.request(endPoint, type: StopPointsResponse.self) { resp, error in
-            handler(resp?.stops ?? [], error)
-        }
+            radius: Constant.defaultRadius
+        )
+        
+        NetworkManager.request(
+            endPoint,
+            type: StopPointsResponse.self,
+            handler: { response, error in
+                handler(response?.stops ?? [], error)
+        })
     }
 }
 

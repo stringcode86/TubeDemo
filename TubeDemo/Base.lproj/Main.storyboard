@@ -48,10 +48,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="StopCellReuseId" id="vV1-GM-szu" customClass="StopTableViewCell" customModule="TubeDemo" customModuleProvider="target">
-                                <rect key="frame" x="16" y="55.333332061767578" width="343" height="40.333332061767578"/>
+                                <rect key="frame" x="16" y="55.333332061767578" width="343" height="50.333332061767578"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vV1-GM-szu" id="amI-bq-VgF">
-                                    <rect key="frame" x="0.0" y="0.0" width="343" height="40.333332061767578"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="343" height="50.333332061767578"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eO7-3n-ezF">
@@ -60,8 +60,8 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="umM-C4-RK1" customClass="CollageView" customModule="TubeDemo" customModuleProvider="target">
-                                            <rect key="frame" x="15" y="36" width="313" height="0.3333333333333357"/>
+                                        <view contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="313" placeholderIntrinsicHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="umM-C4-RK1" customClass="CollageView" customModule="TubeDemo" customModuleProvider="target">
+                                            <rect key="frame" x="15" y="36" width="313" height="10.333333333333336"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </view>
                                     </subviews>
@@ -80,15 +80,22 @@
                                     <outlet property="titleLabel" destination="eO7-3n-ezF" id="D71-o3-biP"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ArrivalCellReuseId" textLabel="aCo-3l-eS6" style="IBUITableViewCellStyleDefault" id="Ybe-u7-NfB">
-                                <rect key="frame" x="16" y="95.666664123535156" width="343" height="43.666667938232422"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ArrivalCellReuseId" textLabel="aCo-3l-eS6" detailTextLabel="g21-Jf-t9e" style="IBUITableViewCellStyleValue1" id="Ybe-u7-NfB" customClass="ArrivalTableViewCell" customModule="TubeDemo" customModuleProvider="target">
+                                <rect key="frame" x="16" y="105.66666412353516" width="343" height="43.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ybe-u7-NfB" id="Ctt-nh-gC0">
                                     <rect key="frame" x="0.0" y="0.0" width="343" height="43.666667938232422"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aCo-3l-eS6">
-                                            <rect key="frame" x="15" y="0.0" width="313" height="43.666667938232422"/>
+                                            <rect key="frame" x="15" y="11.999999999999998" width="33.333333333333336" height="20.333333333333332"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="g21-Jf-t9e">
+                                            <rect key="frame" x="284" y="11.999999999999998" width="44" height="20.333333333333332"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>

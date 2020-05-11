@@ -34,7 +34,7 @@ extension Stop: Decodable {
     }
 }
 
-// MARK - AdditionalProperty
+// MARK: - AdditionalProperty
 
 struct AdditionalProperty: Decodable {
     
@@ -43,7 +43,7 @@ struct AdditionalProperty: Decodable {
     let value: String
     
     var available: Bool {
-        return value != "no"
+        return value != Constant.unavailableValue
     }
     
     enum Category: String, CaseIterable, Decodable {
@@ -59,3 +59,11 @@ struct AdditionalProperty: Decodable {
     }
 }
 
+// MARK: - Constants
+
+extension AdditionalProperty {
+    
+    struct Constant {
+        static let unavailableValue = "no"
+    }
+}
