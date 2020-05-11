@@ -9,10 +9,15 @@
 import Foundation
 import CoreLocation
 
-class UserLocationService: NSObject {
+typealias LocationHandler = (CLLocationCoordinate2D?)->Void
 
-    typealias LocationHandler = (CLLocationCoordinate2D?)->Void
+protocol UserLocationService: NSObject {
     
+    func getUserLocation(handler: @escaping LocationHandler)
+}
+
+class DefaultUserLocationService: NSObject, UserLocationService {
+
     private lazy var locationManager: CLLocationManager = {
         let manager = CLLocationManager()
         manager.delegate = self
@@ -35,7 +40,7 @@ class UserLocationService: NSObject {
     }
 }
 
-extension UserLocationService: CLLocationManagerDelegate {
+extension DefaultUserLocationService: CLLocationManagerDelegate {
         
     func locationManager(_ manager: CLLocationManager,
                          didUpdateLocations locations: [CLLocation]) {

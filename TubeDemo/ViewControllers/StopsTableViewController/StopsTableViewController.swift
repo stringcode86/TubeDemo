@@ -12,8 +12,8 @@ import MapKit
 class StopsTableViewController: UITableViewController {
 
     var location: CLLocationCoordinate2D = Constant.defaultLocation
-    var stopsService: StopsService = StopsService()
-    var arrivalsService: ArrivalsService = ArrivalsService()
+    var stopsService: StopsService = DefaultStopsService()
+    var arrivalsService: ArrivalsService = DefaultArrivalsService()
     
     private var stops: [Stop] = []
     private var arrivals: [String: [Arrival]] = [:]

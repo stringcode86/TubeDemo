@@ -20,7 +20,7 @@ class MapViewController: UIViewController {
     
     weak var delegate: MapViewControllerDelegate?
     
-    var locationService = UserLocationService()
+    var locationService = DefaultUserLocationService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +35,7 @@ class MapViewController: UIViewController {
     }
 }
 
-// MARK: - Default map location handeling
+// MARK: - Default map location handling
 
 extension MapViewController {
     
@@ -80,8 +80,8 @@ private extension MapViewController {
     struct Constant {
         static let defaultSize = MKMapSize(width: 1000, height: 1000)
         static let defaultLocation = CLLocationCoordinate2D(
-            latitude: 51.5155294,
-            longitude: -0.1440504
+            latitude: 51.5158221,
+            longitude: -0.1434976
         )
         static let londonRegion = MKCoordinateRegion(
             center: Constant.defaultLocation,

@@ -32,6 +32,7 @@
 		9F3B39B72469552300B8210A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3B39B62469552300B8210A /* HomeViewController.swift */; };
 		9F3B39B9246960FF00B8210A /* UserLocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3B39B8246960FF00B8210A /* UserLocationService.swift */; };
 		9F3B39BB24696DD700B8210A /* MKCoordinateRegion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3B39BA24696DD700B8210A /* MKCoordinateRegion.swift */; };
+		9F3B39BE24697B0B00B8210A /* NetworkEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3B39BD24697B0B00B8210A /* NetworkEndPoint.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +84,8 @@
 		9F3B39B62469552300B8210A /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		9F3B39B8246960FF00B8210A /* UserLocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationService.swift; sourceTree = "<group>"; };
 		9F3B39BA24696DD700B8210A /* MKCoordinateRegion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKCoordinateRegion.swift; sourceTree = "<group>"; };
+		9F3B39BD24697B0B00B8210A /* NetworkEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkEndPoint.swift; sourceTree = "<group>"; };
+		9F3B39BF24697F9200B8210A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +147,7 @@
 				9F00ECD12466B36C0090897E /* Assets.xcassets */,
 				9F00ECD32466B36C0090897E /* LaunchScreen.storyboard */,
 				9F00ECD62466B36C0090897E /* Info.plist */,
+				9F3B39BF24697F9200B8210A /* README.md */,
 			);
 			path = TubeDemo;
 			sourceTree = "<group>";
@@ -169,12 +173,12 @@
 		9F00ECFC2466E3BC0090897E /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				9F3B39BC24697AF600B8210A /* NetworkManager */,
 				9F3B39B12469044C00B8210A /* Responses */,
+				9F3B39A82468AF5A00B8210A /* EndPoint.swift */,
 				9F00ECFD2466E3F60090897E /* StopsService.swift */,
 				9F00ECFF2466E4020090897E /* ArrivalsService.swift */,
 				9F3B39B8246960FF00B8210A /* UserLocationService.swift */,
-				9F3B39A82468AF5A00B8210A /* EndPoint.swift */,
-				9F3B39A92468AF5A00B8210A /* NetworkManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -241,6 +245,15 @@
 				9F3B39AF2469044500B8210A /* StopPointsResponse.swift */,
 			);
 			path = Responses;
+			sourceTree = "<group>";
+		};
+		9F3B39BC24697AF600B8210A /* NetworkManager */ = {
+			isa = PBXGroup;
+			children = (
+				9F3B39BD24697B0B00B8210A /* NetworkEndPoint.swift */,
+				9F3B39A92468AF5A00B8210A /* NetworkManager.swift */,
+			);
+			path = NetworkManager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -386,6 +399,7 @@
 				9F00ED0E246821A30090897E /* CollageView.swift in Sources */,
 				9F0C8E9924682E0A0068A536 /* ArrivalTableViewCell.swift in Sources */,
 				9F3B39AB2468AF5A00B8210A /* NetworkManager.swift in Sources */,
+				9F3B39BE24697B0B00B8210A /* NetworkEndPoint.swift in Sources */,
 				9F0C8E9724682DFE0068A536 /* StopTableViewCell.swift in Sources */,
 				9F00ECCB2466B3690090897E /* SceneDelegate.swift in Sources */,
 				9F3B39B9246960FF00B8210A /* UserLocationService.swift in Sources */,

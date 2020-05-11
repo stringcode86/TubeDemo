@@ -8,7 +8,14 @@
 
 import Foundation
 
-struct ArrivalsService {
+typealias ArrivalsHandler = ([Arrival], Error?) -> Void
+
+protocol ArrivalsService {
+        
+    func arrivals(for naptanId: String, limit: Int, handler: @escaping ArrivalsHandler)
+}
+
+struct DefaultArrivalsService: ArrivalsService {
     
     typealias ArrivalsHandler = ([Arrival], Error?) -> Void
     

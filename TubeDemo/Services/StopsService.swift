@@ -9,11 +9,17 @@
 import Foundation
 import MapKit
 
-struct StopsService {
+typealias StopsHandler = ([Stop], Error?)->Void
+
+protocol StopsService {
     
-    typealias StopsHandler = ([Stop], Error?)->Void
-    
+    func stopsNear(location: CLLocationCoordinate2D, handler: @escaping StopsHandler)
+}
+
+struct DefaultStopsService: StopsService {
+
     func stopsNear(location: CLLocationCoordinate2D, handler: @escaping StopsHandler) {
+        
         let endPoint = EndPoint.nearByStations(
             lat: location.latitude,
             lon: location.longitude,
@@ -31,7 +37,7 @@ struct StopsService {
 
 // MARK: - Constants
 
-private extension StopsService {
+private extension DefaultStopsService {
     
     struct Constant {
         static let defaultRadius = 1000
