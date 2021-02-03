@@ -33,6 +33,7 @@
 		9F3B39B9246960FF00B8210A /* UserLocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3B39B8246960FF00B8210A /* UserLocationService.swift */; };
 		9F3B39BB24696DD700B8210A /* MKCoordinateRegion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3B39BA24696DD700B8210A /* MKCoordinateRegion.swift */; };
 		9F3B39BE24697B0B00B8210A /* NetworkEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3B39BD24697B0B00B8210A /* NetworkEndPoint.swift */; };
+		9F90A70625CB559B00201C63 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 9F90A70525CB559B00201C63 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,7 +86,7 @@
 		9F3B39B8246960FF00B8210A /* UserLocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationService.swift; sourceTree = "<group>"; };
 		9F3B39BA24696DD700B8210A /* MKCoordinateRegion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKCoordinateRegion.swift; sourceTree = "<group>"; };
 		9F3B39BD24697B0B00B8210A /* NetworkEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkEndPoint.swift; sourceTree = "<group>"; };
-		9F3B39BF24697F9200B8210A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		9F90A70525CB559B00201C63 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,7 +148,7 @@
 				9F00ECD12466B36C0090897E /* Assets.xcassets */,
 				9F00ECD32466B36C0090897E /* LaunchScreen.storyboard */,
 				9F00ECD62466B36C0090897E /* Info.plist */,
-				9F3B39BF24697F9200B8210A /* README.md */,
+				9F90A70525CB559B00201C63 /* README.md */,
 			);
 			path = TubeDemo;
 			sourceTree = "<group>";
@@ -362,6 +363,7 @@
 			files = (
 				9F00ECD52466B36C0090897E /* LaunchScreen.storyboard in Resources */,
 				9F00ECD22466B36C0090897E /* Assets.xcassets in Resources */,
+				9F90A70625CB559B00201C63 /* README.md in Resources */,
 				9F00ECD02466B3690090897E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
