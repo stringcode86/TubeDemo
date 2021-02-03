@@ -9,6 +9,14 @@
 import UIKit
 import MapKit
 
+/// `StopsTableViewController` implements `MapViewControllerDelegate` to get location.
+/// Uses `StopService` and `ArrivalsService` to load data. Mock services could easily be
+/// injected. Entire section is used for displaying data for one tube stop. First cell acts as header.
+/// This is due to facilities requirement. Facilities have non-uniform size. Therefore autosizing cells
+/// seem a natural fit. Autosizing does not work with section headers. When loading stops animations
+/// are not as graceful as I would like. This could be improved by more elaborate diffing. For now
+/// I'm simply reloading, inserting or deleting sections. Currently there is no loading state. Error
+/// handling very rudimentary.
 class StopsTableViewController: UITableViewController {
 
     var location: CLLocationCoordinate2D = Constant.defaultLocation
@@ -130,13 +138,13 @@ private extension StopsTableViewController {
             
             DispatchQueue.main.async {
                 self.handleError(error)
-                self.handleStops(stops)
+                self.handleNewStops(stops)
                 self.refreshArrivals(for: stops)
             }
         }
     }
     
-    func handleStops(_ stops: [Stop]) {
+    func handleNewStops(_ stops: [Stop]) {
         var sectionsToDelete = [Int]()
         var sectionsToInsert = [Int]()
 
@@ -155,9 +163,9 @@ private extension StopsTableViewController {
         self.arrivals = [:]
 
         tableView.beginUpdates()
-        tableView.deleteSections(IndexSet(sectionsToDelete), with: .top)
+        tableView.deleteSections(IndexSet(sectionsToDelete), with: .bottom)
         tableView.reloadSections(IndexSet(sectionsToReload), with: .fade)
-        tableView.insertSections(IndexSet(sectionsToInsert), with: .bottom)
+        tableView.insertSections(IndexSet(sectionsToInsert), with: .top)
         tableView.endUpdates()
     }
 }
@@ -167,31 +175,61 @@ private extension StopsTableViewController {
 private extension StopsTableViewController {
     
     func refreshArrivals(for stops: [Stop]) {
-        guard stops.count > 0 else {
-            arrivals = [:]
-            return
-        }
-        
-        for stop in stops {
-            arrivalsService.arrivals(
-                for: stop.naptanId,
-                limit: Constant.defaultArrivalsLimit,
-                handler: { arrivals, error in
-                    
-                    DispatchQueue.main.async {
-                        self.handleError(error)
-                        self.handleArrivals(stop: stop, arrivals: arrivals)
-                    }
-            })
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+            
+            guard stops.count > 0 else {
+                self.arrivals = [:]
+                return
+            }
+            
+            for stop in stops {
+                self.arrivalsService.arrivals(
+                    for: stop.naptanId,
+                    limit: Constant.defaultArrivalsLimit,
+                    handler: { arrivals, error in
+                        
+                        DispatchQueue.main.async {
+                            self.handleError(error)
+                            self.handleNewArrivals(stop: stop, arrivals: arrivals)
+                        }
+                })
+            }
         }
     }
     
-    func handleArrivals(stop: Stop, arrivals: [Arrival]) {
-        self.arrivals[stop.naptanId] = arrivals
-        
+    func handleNewArrivals(stop: Stop, arrivals: [Arrival]) {
+
         if let idx = stops.lastIndex(where: { $0.naptanId == stop.naptanId }) {
+
+            var currArrivals = self.arrivals[stop.naptanId] ?? []
+
+            var indexesToDelete = [Int]()
+            var indexesToInsert = [Int]()
+
+            // Removing unn--eeded cells
+            while currArrivals.count > (arrivals.count) + 1 {
+                currArrivals.removeLast()
+                indexesToDelete.append(currArrivals.count + 1)
+            }
+
+            // Adding unneeded cells
+            let indexesToReload = Array(1..<(currArrivals.count + 1))
+
+            // Inserting new cells if needed
+            if  currArrivals.count < (arrivals.count + 1) {
+                indexesToInsert = Array((currArrivals.count + 1)..<(arrivals.count + 1))
+            }
+
+            self.arrivals[stop.naptanId] = arrivals
+
+            let cellsToDelete = indexesToDelete.map { IndexPath(row: $0, section: idx) }
+            let cellsToReload = indexesToReload.map { IndexPath(row: $0, section: idx) }
+            let cellsToInsert = indexesToInsert.map { IndexPath(row: $0, section: idx) }
+
             tableView.beginUpdates()
-            tableView.reloadSections(IndexSet([idx]), with: .fade)
+            tableView.deleteRows(at: cellsToDelete, with: .top)
+            tableView.reloadRows(at: cellsToReload, with: .fade)
+            tableView.insertRows(at: cellsToInsert, with: .bottom)
             tableView.endUpdates()
         }
     }

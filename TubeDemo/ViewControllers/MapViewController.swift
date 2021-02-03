@@ -14,13 +14,17 @@ protocol MapViewControllerDelegate: class {
                            didChange location: CLLocationCoordinate2D)
 }
 
+/// `MapViewController` is a location provider via `MapViewControllerDelegate`. It requests
+/// locations permissions via `UserLocationService`. Either defaults to
+/// `Constant.defaultLocation` (central London) if permissions are not granted or user location is
+/// outside of M25 (`Constant.londonRegion`).
 class MapViewController: UIViewController {
 
     @IBOutlet weak var mapView: MKMapView!
     
     weak var delegate: MapViewControllerDelegate?
     
-    var locationService = DefaultUserLocationService()
+    var locationService: UserLocationService = DefaultUserLocationService()
     
     override func viewDidLoad() {
         super.viewDidLoad()

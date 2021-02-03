@@ -8,7 +8,11 @@
 
 import UIKit
 
-/// `HomeViewController` etremly simply contianer. Ideally I would hav lo
+/// `HomeViewController` extremely rudimentary simple container controller. Ideally I would have
+/// love to implement custom containment controller [Example of custom containment controller I
+/// did in the past](https://github.com/stringcode86/DrawerController).
+/// This controller simply embeds `MapViewController` and `StopsViewController`
+/// via embedding segues and hock up delelegate.
 class HomeViewController: UIViewController {
 
     weak var mapViewController: MapViewController?
